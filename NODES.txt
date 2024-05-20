@@ -1,0 +1,145 @@
+### Challenge 1: Create package.json
+To create a `package.json` file, simply run `npm init` in your project directory and follow the prompts.
+
+### Challenge 2: Create index.js and Write Node.js Architecture to nodejs_architecture.txt
+```javascript
+// index.js
+const fs = require('fs');
+
+const architectureInfo = `
+Node.js Architecture:
+
+Node.js follows an event-driven, non-blocking I/O model, which makes it lightweight and efficient for handling concurrent operations.
+It uses the V8 JavaScript runtime engine to execute JavaScript code.
+Node.js includes a built-in HTTP module, which allows it to create HTTP servers and handle HTTP requests and responses.
+Node.js applications can be scaled horizontally using the cluster module to take advantage of multi-core systems.
+`;
+
+fs.writeFileSync('nodejs_architecture.txt', architectureInfo);
+```
+
+### Challenge 3: Read and Print Content of nodejs_architecture.txt
+```javascript
+// index.js
+const fs = require('fs');
+
+fs.readFile('nodejs_architecture.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});
+```
+
+### Challenge 4: Append Advantages of Node.js to nodejs_architecture.txt and Print Content
+```javascript
+// index.js
+const fs = require('fs');
+
+const advantages = `
+Advantages of Node.js:
+
+1. Asynchronous and Event-Driven: Allows handling multiple requests without blocking.
+2. Fast Execution: Built on the V8 engine, which compiles JavaScript code directly into machine code for faster execution.
+3. Large Ecosystem: Node.js has a vast ecosystem of libraries and frameworks, making it versatile for various applications.
+`;
+
+fs.appendFileSync('nodejs_architecture.txt', advantages);
+
+// Read and print the updated content
+fs.readFile('nodejs_architecture.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});
+```
+
+### Challenge 5: Delete nodejs_architecture.txt
+```javascript
+// index.js
+const fs = require('fs');
+
+fs.unlink('nodejs_architecture.txt', (err) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('File Deleted Successfully');
+});
+```
+
+### Challenge 6: Print OS Name and Release Version
+```javascript
+// index.js
+const os = require('os');
+
+console.log(`OS: ${os.platform()}`);
+console.log(`Release Version: ${os.release()}`);
+```
+
+### Challenge 7: Create HTTP Server
+```javascript
+// index.js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('I Am Happy To Learn Full Stack Web Development From PW Skills!');
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+```
+
+### Challenge 8: Custom Event "subscribe"
+```javascript
+// index.js
+const EventEmitter = require('events');
+
+const eventEmitter = new EventEmitter();
+
+eventEmitter.on('subscribe', () => {
+  console.log('User has subscribed!');
+});
+
+// Trigger the event
+eventEmitter.emit('subscribe');
+```
+
+### Challenge 9: Remove Event Handler and Observe
+```javascript
+// index.js
+const EventEmitter = require('events');
+
+const eventEmitter = new EventEmitter();
+
+const subscribeHandler = () => {
+  console.log('User has subscribed!');
+};
+
+eventEmitter.on('subscribe', subscribeHandler);
+
+// Remove the event handler
+eventEmitter.removeListener('subscribe', subscribeHandler);
+
+// Trigger the event
+eventEmitter.emit('subscribe'); // No output because the event handler is removed
+```
+
+### Challenge 10: Set Maximum Number of Event Listeners
+```javascript
+// index.js
+const EventEmitter = require('events').EventEmitter;
+
+console.log(EventEmitter.defaultMaxListeners); // Default is 10
+
+// Set maximum number of event listeners to 5
+EventEmitter.defaultMaxListeners = 5;
+
+console.log(EventEmitter.defaultMaxListeners); // Updated to 5
+```
